@@ -7,6 +7,10 @@ from app.models import User, Follow, Role, Permission, Post, Comment
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 migrate = Migrate(app, db)
 
+print("CONFIG ", os.getenv('FLASK_CONFIG') or 'default')
+print("DB_URI ", app.config['SQLALCHEMY_DATABASE_URI'])
+print('MAIL_SERVER ', app.config['MAIL_SERVER'])
+print('FLASKY_ADMIN ', app.config['FLASKY_ADMIN'])
 
 @app.shell_context_processor
 def make_shell_context():
