@@ -49,5 +49,18 @@ def deploy():
     # create or update user roles
     Role.insert_roles()
 
+    test_email = "test@gmail.com"
+    test_user = User.query.filter_by(email=test_email).first()
+    if test_user is None:
+        test_user = User(
+            name="test",
+            username="test",
+            email=test_email,
+            password="test",
+            confirmed=True,
+        )
+        db.session.add(test_user)
+        db.session.commit()
+
     # ensure all users are following themselves
     User.add_self_follows()
